@@ -1,0 +1,4 @@
+.env
+chatbot_for_teams
+__pycache__/
+teams_bot.zip

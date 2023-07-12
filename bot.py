@@ -1,7 +1,24 @@
 from botbuilder.core import ActivityHandler, TurnContext
 from botbuilder.schema import ChannelAccount
 import boto3
+from dotenv import load_dotenv
+import os
+import boto3
 
+# Load environment variables from .env file
+load_dotenv()
+
+# Read the API key and secret from environment variables
+access_key_id = os.environ['AWS_ACCESS_KEY_ID']
+secret_access_key = os.environ['AWS_SECRET_ACCESS_KEY']
+
+# Create the Lex V2 Runtime client
+lex_client = boto3.client(
+    'lexv2-runtime',
+    region_name='us-east-1',
+    aws_access_key_id=access_key_id,
+    aws_secret_access_key=secret_access_key
+)
 class MyBot(ActivityHandler):
     # See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
     def __init__(self):
